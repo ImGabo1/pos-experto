@@ -1,0 +1,8 @@
+{
+  "rewrites": [
+    {
+      "source": "/api/:path*",
+      "destination": "https://pos-experto-backend.onrender.com/api/:path*"
+    }
+  ]
+}
