@@ -1,0 +1,23 @@
+:root { --bg:#f4f6fb; --card:#fff; --ink:#1c2333; --mute:#667085; --brand:#3b5bdb; --ok:#2f9e44; --bad:#e03131; --line:#e4e8f0; }
+@media (prefers-color-scheme: dark) { :root { --bg:#12151d; --card:#1b2030; --ink:#e8ecf5; --mute:#9aa3b5; --line:#2b3248; } }
+* { box-sizing: border-box; }
+body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, sans-serif; background:var(--bg); color:var(--ink); }
+header { padding:14px 20px; background:var(--brand); color:#fff; font-weight:700; }
+nav { display:flex; gap:4px; flex-wrap:wrap; padding:10px 16px; background:var(--card); border-bottom:1px solid var(--line); }
+nav button { border:0; background:none; padding:8px 14px; border-radius:8px; cursor:pointer; color:var(--ink); font-size:14px; }
+nav button.on { background:var(--brand); color:#fff; }
+main { max-width:1100px; margin:0 auto; padding:18px; display:grid; gap:16px; }
+.card { background:var(--card); border:1px solid var(--line); border-radius:12px; padding:16px; overflow-x:auto; }
+.grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(170px,1fr)); gap:12px; }
+.kpi b { display:block; font-size:24px; } .kpi span { color:var(--mute); font-size:13px; }
+h2,h3 { margin:0 0 10px; } .mute { color:var(--mute); font-size:13px; }
+table { width:100%; border-collapse:collapse; font-size:14px; } th,td { text-align:left; padding:7px 8px; border-bottom:1px solid var(--line); }
+input,select,textarea { padding:8px; border:1px solid var(--line); border-radius:8px; background:var(--bg); color:var(--ink); font:inherit; max-width:100%; }
+.row { display:flex; gap:8px; flex-wrap:wrap; align-items:center; }
+.btn { background:var(--brand); color:#fff; border:0; padding:8px 14px; border-radius:8px; cursor:pointer; font:inherit; }
+.btn.alt { background:transparent; color:var(--brand); border:1px solid var(--brand); } .btn.sm { padding:4px 10px; font-size:13px; }
+.ok { color:var(--ok); font-weight:600; } .bad { color:var(--bad); font-weight:600; }
+.trace { border-left:3px solid var(--brand); padding-left:12px; margin-top:10px; display:grid; gap:8px; font-size:14px; }
+.trace small { color:var(--mute); display:block; }
+.err { background:#e0313122; color:var(--bad); padding:8px 12px; border-radius:8px; }
+pre { white-space:pre-wrap; margin:0; font:inherit; }
