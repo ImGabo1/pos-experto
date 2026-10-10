@@ -5,16 +5,22 @@ import { q, initDb } from "./db";
 import { seed } from "./seed";
 import { priceCart, processSale, processReturn, suggestProduct, suggestCombo, dashboard, ask } from "./engine";
 
+const allowedOrigins = (process.env.FRONTEND_URL ?? "")
+  .split(",")
+  .map((s) => s.trim().replace(/\/+$/, ""))
+  .filter(Boolean);
+
 const app = express();
-app.use(cors({ origin: process.env.FRONTEND_URL?.split(",") ?? true }));
+app.use(cors({ origin: allowedOrigins.length ? allowedOrigins : true }));
 app.use(express.json());
+console.log("CORS permitido para:", allowedOrigins.length ? allowedOrigins.join(", ") : "TODOS los orígenes");
 
 const h = (fn: (req: express.Request) => Promise<any>) => async (req: express.Request, res: express.Response) => {
   try { res.json(await fn(req)); } catch (e: any) { res.status(400).json({ error: e.message ?? "Error" }); }
 };
 
 app.get("/", (_req, res) => res.send("POS experto API OK"));
-app.get("/api/health", h(async () => ({ ok: true })));
+app.get("/api/health", h(async () => ({ ok: true, cors: allowedOrigins.length ? allowedOrigins : "*" })));
 app.get("/api/dashboard", h(() => dashboard()));
 
 app.get("/api/products", h(async () => (await q("SELECT * FROM products ORDER BY id")).rows));
